@@ -31,3 +31,4 @@ export function useReverseGeocodeQuery(coordinates: Coordinates | null){
         enabled: !!coordinates,
     })
 }
+

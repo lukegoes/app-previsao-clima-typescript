@@ -1,11 +1,19 @@
 import CurrentWeather from "@/components/CurrentWeather";
+import HourlyTemperature from "@/components/Hourly-temperature";
 import WeatherSkeleton from "@/components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import UvIndex from "@/components/UvIndex";
+import WeatherDetails from "@/components/WeatherDetails";
+import WeatherForecast from "@/components/WeatherForecast";
 import { useGeolocation } from "@/hooks/use-geolocation";
-import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from "@/hooks/use-weather";
+import {
+  useForecastQuery,
+  useReverseGeocodeQuery,
+  useUvIndexQuery,
+  useWeatherQuery,
+} from "@/hooks/use-weather";
 import { AlertTriangle, MapPin, RefreshCw } from "lucide-react";
-
 
 const WeatherDashboard = () => {
   const {
@@ -14,10 +22,11 @@ const WeatherDashboard = () => {
     isLoading: locationLoading,
     getLocation,
   } = useGeolocation();
-  
+
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
   const locationQuery = useReverseGeocodeQuery(coordinates);
+  const uvIndexQuery = useUvIndexQuery(coordinates);
 
   const handleRefresh = () => {
     getLocation();
@@ -71,7 +80,9 @@ const WeatherDashboard = () => {
         <AlertTriangle className="h-4 w-4" />
         <AlertTitle>Erro</AlertTitle>
         <AlertDescription className="flex flex-col gap-4">
-          <p>Falha ao obter os dados sobre o clima, por favor tente novamente</p>
+          <p>
+            Falha ao obter os dados sobre o clima, por favor tente novamente
+          </p>
           <Button onClick={handleRefresh} variant={"outline"} className="w-fit">
             <RefreshCw className="mr-2 h-4 w-4" />
             Tentar novamente
@@ -81,7 +92,7 @@ const WeatherDashboard = () => {
     );
   }
 
-  if(!weatherQuery.data || !forecastQuery.data) {
+  if (!weatherQuery.data || !forecastQuery.data) {
     return <WeatherSkeleton />;
   }
 
@@ -95,19 +106,32 @@ const WeatherDashboard = () => {
           size={"icon"}
           onClick={handleRefresh}
           disabled={weatherQuery.isFetching || forecastQuery.isFetching}
-         className="cursor-pointer">
-          <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching?"animate-spin":""}`} />
+          className="cursor-pointer"
+        >
+          <RefreshCw
+            className={`h-4 w-4 ${
+              weatherQuery.isFetching ? "animate-spin" : ""
+            }`}
+          />
         </Button>
       </div>
 
-      
       <div className="grid gap-6">
-        <div>
-          <CurrentWeather data={weatherQuery.data} locationName={locationName} />
+        <div className="flex flex-col lg:flex-row gap-4">
+          <CurrentWeather
+            data={weatherQuery.data}
+            locationName={locationName}
+          />
+          <HourlyTemperature data={forecastQuery.data} />
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 items-start">
+          <div className="flex flex-col gap-4">
+            <WeatherDetails data={weatherQuery.data} />
+            <UvIndex data={uvIndexQuery.data} />
           </div>
-        <div>
-          {/*details weather*/}
-          </div>
+
+          <WeatherForecast data={forecastQuery.data} />
+        </div>
       </div>
     </div>
   );

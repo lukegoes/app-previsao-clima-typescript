@@ -21,7 +21,7 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
     <Card className="overflow-hidden">
       <CardContent className="p-6">
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="space-y-4">
+          <div className="space-y-7">
             <div className="space-y-2">
               <div className="flex items-end gap-1">
                 <h2 className="text-2xl font-bold tracking-tighter">
@@ -32,10 +32,12 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
                     , {locationName.state}
                   </span>
                 )}
+                {locationName?.country && (
+                  <span className="text-muted-foreground">
+                    - {locationName.country}
+                  </span>
+                )}
               </div>
-              <p className="text-sm text-muted-foreground">
-                {locationName?.country}
-              </p>
             </div>
 
             <div className="flex items-center gap-2">

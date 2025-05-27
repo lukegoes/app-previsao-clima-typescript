@@ -33,6 +33,7 @@ class WeatherAPI {
 
     return this.fetchData<WeatherData>(url);
   }
+
   async getForecast({ lat, lon }: Coordinates): Promise<ForecastData> {
     const url = this.createUrl(`${API_CONFIG.BASE_URL}/forecast`, {
       lat: lat.toString(),

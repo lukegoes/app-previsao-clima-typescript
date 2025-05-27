@@ -34,6 +34,14 @@ export interface WeatherData {
   dt: number;
 }
 
+export interface AirQualityData {
+  aqi: number;
+}
+
+export interface UvData {
+  uvIndex: number; 
+}
+
 export interface ForecastData {
   list: Array<{
     dt: number;
