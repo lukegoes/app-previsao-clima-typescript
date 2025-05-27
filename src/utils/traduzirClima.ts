@@ -1,4 +1,4 @@
-const weatherTranslations = {
+const weatherTranslations: Record<string, string> = {
   "thunderstorm with light rain": "trovoada com chuva leve",
   "thunderstorm with rain": "trovoada com chuva",
   "thunderstorm with heavy rain": "trovoada com chuva forte",
@@ -61,6 +61,7 @@ const weatherTranslations = {
   "overcast clouds": "céu encoberto"
 };
 
-export function traduzirClima(desc) {
+export function traduzirClima(desc: string): string {
+  if (!desc) return "";
   return weatherTranslations[desc?.toLowerCase()] || desc;
 }
