@@ -7,7 +7,7 @@ interface GeolocationState{
     isLoading: boolean;
 }
 
-export function useGeolocation(params:type){
+export function useGeolocation(){
     const [locationData, setLocationData] = useState<GeolocationState>({
         coordinates: null,
         error: null,
