@@ -4,13 +4,13 @@ import WeatherSkeleton from "@/components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import UvIndex from "@/components/UvIndex";
+
 import WeatherDetails from "@/components/WeatherDetails";
 import WeatherForecast from "@/components/WeatherForecast";
 import { useGeolocation } from "@/hooks/use-geolocation";
 import {
   useForecastQuery,
   useReverseGeocodeQuery,
-  useUvIndexQuery,
   useWeatherQuery,
 } from "@/hooks/use-weather";
 import { AlertTriangle, MapPin, RefreshCw } from "lucide-react";
@@ -26,7 +26,6 @@ const WeatherDashboard = () => {
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
   const locationQuery = useReverseGeocodeQuery(coordinates);
-  const uvIndexQuery = useUvIndexQuery(coordinates);
 
   const handleRefresh = () => {
     getLocation();
@@ -127,7 +126,7 @@ const WeatherDashboard = () => {
         <div className="grid gap-6 md:grid-cols-2 items-start">
           <div className="flex flex-col gap-4">
             <WeatherDetails data={weatherQuery.data} />
-            <UvIndex data={uvIndexQuery.data} />
+            <UvIndex />
           </div>
 
           <WeatherForecast data={forecastQuery.data} />
