@@ -3,6 +3,7 @@ import type {
   Coordinates,
   ForecastData,
   GeocodingResponse,
+  UviData,
   WeatherData,
 } from "./types";
 
@@ -54,6 +55,16 @@ class WeatherAPI {
     });
 
     return this.fetchData<GeocodingResponse[]>(url);
+  }
+
+  async getUvi({ lat, lon }: Coordinates): Promise<UviData> {
+    const url = this.createUrl(`${API_CONFIG.BASE_URL}/uvi`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      units: API_CONFIG.DEFAULT_PARAMS.units,
+    });
+
+    return this.fetchData<UviData>(url);
   }
 }
 

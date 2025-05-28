@@ -59,3 +59,7 @@ export interface GeocodingResponse {
   country: string;
   state?: string;
 }
+
+export interface UviData {
+  value: number;
+}

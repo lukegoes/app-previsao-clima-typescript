@@ -4,6 +4,7 @@ import WeatherSkeleton from "@/components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import UvIndex from "@/components/UvIndex";
+import { useUviQuery } from "@/hooks/use-weather";
 
 import WeatherDetails from "@/components/WeatherDetails";
 import WeatherForecast from "@/components/WeatherForecast";
@@ -26,6 +27,8 @@ const WeatherDashboard = () => {
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
   const locationQuery = useReverseGeocodeQuery(coordinates);
+  const uviQuery = useUviQuery(coordinates);
+
 
   const handleRefresh = () => {
     getLocation();
@@ -126,7 +129,7 @@ const WeatherDashboard = () => {
         <div className="grid gap-6 md:grid-cols-2 items-start">
           <div className="flex flex-col gap-4">
             <WeatherDetails data={weatherQuery.data} />
-            <UvIndex />
+            {uviQuery.data && <UvIndex data={uviQuery.data} />}
           </div>
 
           <WeatherForecast data={forecastQuery.data} />
