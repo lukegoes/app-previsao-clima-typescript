@@ -30,6 +30,27 @@ const HourlyTemperature = ({ data }: HourlyTemperatureProps) => {
         <div className="h-[200px] w-full">
           <ResponsiveContainer width={"100%"} height={"100%"}>
             <LineChart data={chartData}>
+             <defs>
+  <linearGradient id="animated-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stopColor="#2563eb" stopOpacity="1" />
+    <stop offset="48%" stopColor="#60a5fa" stopOpacity="1" />
+    <stop offset="52%" stopColor="#60a5fa" stopOpacity="1" />
+    <stop offset="100%" stopColor="#2563eb" stopOpacity="1" />
+    <animateTransform
+      attributeName="gradientTransform"
+      type="translate"
+      from="-1 0"
+      to="1 0"
+      dur="3s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </linearGradient>
+</defs>
+
+
+
+
               <XAxis
                 dataKey="time"
                 stroke="#888888"
@@ -78,9 +99,11 @@ const HourlyTemperature = ({ data }: HourlyTemperatureProps) => {
               <Line
                 type="monotone"
                 dataKey="temp"
-                stroke="#2563eb"
-                strokeWidth={2}
+                stroke="url(#animated-glow)"
+                strokeWidth={3}
                 dot={false}
+                
+                
               />
 
               <Line
