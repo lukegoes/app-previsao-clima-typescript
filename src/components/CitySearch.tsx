@@ -21,7 +21,7 @@ const CitySearch = () => {
   const { data: locations, isLoading } = useLocationSearch(query);
 
   const handleSelect = (cityData:string) => {
-    const [lat, lon, name, country] = cityData.split("|");
+    const [lat, lon, name] = cityData.split("|");
     
     setOpen(false);
     navigate(`/city/${name}??lat=${lat}&lon=${lon}`);
