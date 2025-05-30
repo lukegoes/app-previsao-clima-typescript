@@ -57,6 +57,15 @@ class WeatherAPI {
     return this.fetchData<GeocodingResponse[]>(url);
   }
 
+  async searchLocations(query: string): Promise<GeocodingResponse[]> {
+    const url = this.createUrl(`${API_CONFIG.GEO}/direct`, {
+      q: query,
+      limit: 5,
+    });
+
+    return this.fetchData<GeocodingResponse[]>(url);
+  }
+
   async getUvi({ lat, lon }: Coordinates): Promise<UviData> {
     const url = this.createUrl(`${API_CONFIG.BASE_URL}/uvi`, {
       lat: lat.toString(),

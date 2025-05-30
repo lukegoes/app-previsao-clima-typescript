@@ -86,7 +86,7 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
               <img
                 src={`https://openweathermap.org/img/wn/${CurrentWeather.icon}@4x.png`}
                 alt={CurrentWeather.description}
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain hover:scale-110 ease-in-out duration-500"
               />
               <div className="absolute bottom-0 text-center">
                 <p className="text-sm font-medium capitalize">

@@ -7,6 +7,7 @@ export const WEATHER_KEYS = {
   forecast: (coords: Coordinates) => ["forecast", coords] as const,
   location: (coords: Coordinates) => ["location", coords] as const,
   uvi: (coords: Coordinates) => ["uvi", coords] as const,
+  search: (query:string) => ["location-search", query] as const,
 } as const;
 
 export function useWeatherQuery(coordinates: Coordinates | null) {
@@ -41,4 +42,13 @@ export function useUviQuery(coordinates: Coordinates | null) {
     queryFn: () => coordinates ? weatherAPI.getUvi(coordinates) : null,
     enabled: !!coordinates,
   });
+}
+
+export function useLocationSearch(query: string){
+   return useQuery({
+    queryKey: WEATHER_KEYS.search(query),
+    queryFn: () => weatherAPI.searchLocations(query),
+    enabled: query.length >= 3,
+  });
+
 }
