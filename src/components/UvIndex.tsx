@@ -70,7 +70,7 @@ const UvIndex = ({ data }: UvIndexProps) => {
               <ShieldAlert className="h-6 w-6 text-red-500" />
               Recomendação
             </p>
-            <p className="text-lg mt-2 text-muted-foreground">{message}</p>
+            <p className="text-sm mt-2 text-muted-foreground">{message}</p>
           </div>
         </div>
       </CardContent>
