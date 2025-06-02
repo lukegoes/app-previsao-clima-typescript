@@ -33,8 +33,7 @@ const CitySearch = () => {
 
   const handleSelect = (cityData: string) => {
     const [lat, lon, name, state, country] = cityData.split("|");
-    console.log({ lat, lon, name, state, country }); // <-- Debug
-
+   
     addToHistory.mutate({
       query,
       name,
