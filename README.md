@@ -5,7 +5,7 @@ Este é um projeto simples e funcional de previsão do tempo, desenvolvido com *
 
 ## Objetivo
 
-Praticar o consumo de APIs públicas, manipulação de estados com React, e aplicação de boas práticas com TypeScript. Este projeto foi pensado para demonstrar meu domínio em front-end com foco em dados externos.
+Praticar o consumo de APIs públicas, manipulação de estados com React, e aplicação de boas práticas com TypeScript.
 
 ## Tecnologias Utilizadas
 
