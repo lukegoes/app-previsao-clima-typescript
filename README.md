@@ -14,10 +14,6 @@ Praticar o consumo de APIs públicas, manipulação de estados com React, e apli
 - Conexão com API
 - Tailwind
 
-## Demonstração
-
-![preview da aplicação](./screenshot.png) <!-- Você pode adicionar um print aqui depois -->
-
 ## Funcionalidades
 
 - Busca por cidade
